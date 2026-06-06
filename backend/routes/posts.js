@@ -96,11 +96,13 @@ router.put("/:id/comment", async (req, res) => {
 
     res.json(post);
 
-  } catch (error) {
-    res.status(500).json({
-      message: error.message
-    });
-  }
+ } catch (error) {
+  console.log("POST ERROR:", error);
+
+  res.status(500).json({
+    message: error.message
+  });
+}
 });
 
 module.exports = router;
