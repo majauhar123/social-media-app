@@ -15,17 +15,23 @@ function CreatePost({ fetchPosts }) {
     }
 
     try {
+      console.log("Logged User:", user);
+
       await API.post("/posts", {
-        username: user.username,
-        text
+        username: user?.user?.username,
+        text,
       });
 
       setText("");
-
       fetchPosts();
+
+      alert("Post Created Successfully 🎉");
     } catch (error) {
-      alert("Failed to create post");
-      console.log(error);
+      console.log(error.response?.data);
+      alert(
+        error.response?.data?.message ||
+        "Failed to create post"
+      );
     }
   };
 
