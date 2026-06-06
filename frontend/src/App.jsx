@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Feed from "./pages/Feed";
+import Login from "./pages/LoginTemp";
+import Signup from "./pages/SignupTemp";
+import Feed from "./pages/FeedTemp";
 
 function App() {
   return (
