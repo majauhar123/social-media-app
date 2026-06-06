@@ -65,16 +65,21 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    const isMatch = await bcrypt.compare(
-      password,
-      user.password
-    );
+   console.log("Entered Password:", password);
+console.log("Stored Password:", user.password);
 
-    if (!isMatch) {
-      return res.status(400).json({
-        message: "Invalid password"
-      });
-    }
+const isMatch = await bcrypt.compare(
+  password,
+  user.password
+);
+
+console.log("Password Match:", isMatch);
+
+if (!isMatch) {
+  return res.status(400).json({
+    message: "Invalid password"
+  });
+}
 
     const token = jwt.sign(
       {
