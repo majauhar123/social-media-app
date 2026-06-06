@@ -14,11 +14,13 @@ router.post("/", async (req, res) => {
       });
     }
 
-    const post = new Post({
-      username,
-      text,
-      image
-    });
+  const post = new Post({
+  username,
+  text,
+  image
+});
+
+console.log(req.body);;
 
     await post.save();
 
