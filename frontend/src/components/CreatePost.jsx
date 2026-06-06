@@ -9,14 +9,11 @@ function CreatePost({ fetchPosts }) {
       localStorage.getItem("user")
     );
 
-    console.log("Stored Data:", storedData);
-
     const username =
-      storedData?.user?.username ||
-      storedData?.username;
+      storedData?.user?.username;
 
     if (!username) {
-      alert("User not found. Please login again.");
+      alert("Please login again");
       return;
     }
 
@@ -32,12 +29,9 @@ function CreatePost({ fetchPosts }) {
       });
 
       setText("");
+      fetchPosts();
 
-      alert("Post Created Successfully 🎉");
-
-      if (fetchPosts) {
-        fetchPosts();
-      }
+      alert("Post Created Successfully");
     } catch (error) {
       console.log(error.response?.data);
       alert(
