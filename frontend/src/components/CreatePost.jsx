@@ -4,28 +4,40 @@ import API from "../services/api";
 function CreatePost({ fetchPosts }) {
   const [text, setText] = useState("");
 
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
-
   const createPost = async () => {
+    const storedData = JSON.parse(
+      localStorage.getItem("user")
+    );
+
+    console.log("Stored Data:", storedData);
+
+    const username =
+      storedData?.user?.username ||
+      storedData?.username;
+
+    if (!username) {
+      alert("User not found. Please login again.");
+      return;
+    }
+
     if (!text.trim()) {
       alert("Please write something!");
       return;
     }
 
     try {
-      console.log("Logged User:", user);
-
       await API.post("/posts", {
-        username: user?.user?.username,
+        username,
         text,
       });
 
       setText("");
-      fetchPosts();
 
       alert("Post Created Successfully 🎉");
+
+      if (fetchPosts) {
+        fetchPosts();
+      }
     } catch (error) {
       console.log(error.response?.data);
       alert(
